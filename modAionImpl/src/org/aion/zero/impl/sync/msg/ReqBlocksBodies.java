@@ -30,10 +30,11 @@ import java.util.List;
 
 import org.aion.p2p.CTRL;
 import org.aion.p2p.IMsg;
+import org.aion.p2p.MsgBase;
 import org.aion.p2p.P2pVer;
 import org.aion.zero.impl.sync.ACT;
 
-public final class ReqBlocksBodies implements IMsg {
+public final class ReqBlocksBodies extends MsgBase {
 
     private final static byte ctrl = CTRL.SYNC0;
 

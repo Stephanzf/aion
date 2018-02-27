@@ -8,6 +8,7 @@ module aion.mcf {
     requires aion.rlp;
     requires aion.db.impl;
     requires slf4j.api;
+    requires aion.p2p;
     
 
     exports org.aion.mcf.account;

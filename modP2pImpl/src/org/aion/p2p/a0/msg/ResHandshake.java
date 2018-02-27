@@ -27,6 +27,7 @@ package org.aion.p2p.a0.msg;
 
 import org.aion.p2p.CTRL;
 import org.aion.p2p.IMsg;
+import org.aion.p2p.MsgBase;
 import org.aion.p2p.P2pVer;
 
 /**
@@ -34,7 +35,7 @@ import org.aion.p2p.P2pVer;
  * @author chris
  *
  */
-public final class ResHandshake implements IMsg {
+public final class ResHandshake extends MsgBase {
 
     private final static byte ctrl = CTRL.NET0;
 

@@ -26,11 +26,12 @@ package org.aion.zero.impl.sync.msg;
 import org.aion.base.type.IBlock;
 import org.aion.p2p.CTRL;
 import org.aion.p2p.IMsg;
+import org.aion.p2p.MsgBase;
 import org.aion.p2p.P2pVer;
 import org.aion.rlp.RLP;
 import org.aion.zero.impl.sync.ACT;
 
-public final class BroadcastNewBlock implements IMsg {
+public final class BroadcastNewBlock extends MsgBase{
 
     private final static byte ctrl = CTRL.SYNC0;
 

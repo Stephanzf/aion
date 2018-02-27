@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.aion.p2p.IMsg;
+import org.aion.p2p.MsgBase;
 import org.aion.p2p.a0.Node;
 import org.aion.p2p.CTRL;
 import org.aion.p2p.P2pVer;
@@ -38,7 +39,7 @@ import org.aion.p2p.P2pVer;
  * @author chris
  *
  */
-public final class ResActiveNodes implements IMsg {
+public final class ResActiveNodes extends MsgBase {
 
     private final static byte ctrl = CTRL.NET0;
 

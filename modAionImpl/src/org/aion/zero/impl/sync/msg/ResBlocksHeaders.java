@@ -29,6 +29,7 @@ import java.util.List;
 
 import org.aion.p2p.CTRL;
 import org.aion.p2p.IMsg;
+import org.aion.p2p.MsgBase;
 import org.aion.p2p.P2pVer;
 import org.aion.rlp.RLP;
 import org.aion.rlp.RLPList;
@@ -41,7 +42,7 @@ import org.aion.zero.types.A0BlockHeader;
  *
  */
 
-public final class ResBlocksHeaders implements IMsg {
+public final class ResBlocksHeaders extends MsgBase {
 
     private final static byte ctrl = CTRL.SYNC0;
 

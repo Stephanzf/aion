@@ -28,6 +28,7 @@ import java.nio.ByteBuffer;
 
 import org.aion.p2p.CTRL;
 import org.aion.p2p.IMsg;
+import org.aion.p2p.MsgBase;
 import org.aion.p2p.P2pVer;
 import org.aion.zero.impl.sync.ACT;
 
@@ -36,7 +37,7 @@ import org.aion.zero.impl.sync.ACT;
  * TODO: test cases
  */
 
-public final class ResStatus implements IMsg {
+public final class ResStatus extends MsgBase {
 
     private final static byte ctrl = CTRL.SYNC0;
 

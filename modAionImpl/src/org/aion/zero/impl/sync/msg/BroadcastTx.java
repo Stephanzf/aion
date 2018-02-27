@@ -30,6 +30,7 @@ import java.util.List;
 import org.aion.base.type.ITransaction;
 import org.aion.p2p.CTRL;
 import org.aion.p2p.IMsg;
+import org.aion.p2p.IMsgCvt;
 import org.aion.p2p.P2pVer;
 import org.aion.rlp.RLP;
 import org.aion.rlp.RLPList;
@@ -39,12 +40,15 @@ import org.aion.zero.impl.sync.ACT;
  * @author jay
  *
  */
-public final class BroadcastTx implements IMsg {
+public final class BroadcastTx implements IMsg<BroadcastTx, List<ITransaction>> {
 
     private final static byte ctrl = CTRL.SYNC0;
     private final static byte act = ACT.BROADCAST_TX;
 
-    private final List<ITransaction> txl;
+    private List<ITransaction> txl;
+
+    public BroadcastTx() {
+    }
 
     public BroadcastTx(final List<ITransaction> _txl) {
         this.txl = _txl;
@@ -52,6 +56,11 @@ public final class BroadcastTx implements IMsg {
 
     public short getVer() {
         return P2pVer.VER0;
+    }
+
+    public BroadcastTx cvt(List<ITransaction> v) {
+        this.txl = v;
+        return this;
     }
 
     /*

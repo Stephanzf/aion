@@ -29,7 +29,7 @@ package org.aion.p2p;
  * @author chris
  */
 
-public interface IMsg {
+public interface IMsg<T, V> extends IMsgCvt<T, V> {
 
     short getVer();
 

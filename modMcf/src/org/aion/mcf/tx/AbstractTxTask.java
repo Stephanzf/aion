@@ -22,7 +22,7 @@
  *     
  ******************************************************************************/
 
-package org.aion.zero.impl.tx;
+package org.aion.mcf.tx;
 
 import java.util.Collections;
 import java.util.List;
@@ -30,9 +30,10 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 import org.aion.base.type.ITransaction;
+import org.aion.p2p.IMsg;
+import org.aion.p2p.IMsgCvt;
 import org.aion.p2p.INode;
 import org.aion.p2p.IP2pMgr;
-import org.aion.zero.impl.sync.msg.BroadcastTx;
 
 /**
  * @author jin
@@ -41,10 +42,12 @@ import org.aion.zero.impl.sync.msg.BroadcastTx;
 // public abstract class AbstractTxTask<TX extends ITransaction, CHANMGR extends
 // AbstractChanMgr, CHAN extends AbstractChannel> implements Callable<List<TX>>
 // {
-public abstract class AbstractTxTask<TX extends ITransaction, P2P extends IP2pMgr> implements Callable<List<TX>> {
+public abstract class AbstractTxTask<TX extends ITransaction, P2P extends IP2pMgr, MSG extends IMsg>
+        implements Callable<List<TX>> {
 
     protected final List<TX> tx;
     protected final P2P p2pMgr;
+    protected Class<MSG> msg;
 
     public AbstractTxTask(TX _tx, P2P _p2pMgr) {
         this.tx = Collections.singletonList(_tx);
@@ -68,7 +71,12 @@ public abstract class AbstractTxTask<TX extends ITransaction, P2P extends IP2pMg
             if (activeNodes != null && !activeNodes.isEmpty()) {
                 for (Map.Entry<Integer, INode> e : activeNodes.entrySet()) {
 
-                    this.p2pMgr.send(e.getValue().getId(), new BroadcastTx((List<ITransaction>) this.tx));
+                    MSG imsg = msg.newInstance();
+
+                    // this.p2pMgr.send(e.getValue().getId(), new
+                    // BroadcastTx((List<ITransaction>) this.tx));
+                    this.p2pMgr.send(e.getValue().getId(), (IMsg) (imsg.cvt(this.tx)));
+
                 }
             }
 
